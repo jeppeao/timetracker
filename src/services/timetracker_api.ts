@@ -1,7 +1,8 @@
 const fetcher = async (url: string, options = {}, data={}) => {
   const defaultOptions: RequestInit = {
-    method: 'get',
-    mode: 'cors'
+    method: 'POST',
+    mode: 'cors',
+    credentials: "include",
   };
 
   const fetchOptions = {...defaultOptions, ...options};
@@ -11,7 +12,7 @@ const fetcher = async (url: string, options = {}, data={}) => {
 }
 
 const getUser = () => {
-  return fetcher('http://localhost:4001/api');
+  return fetcher('https://localhost:8443/db');
 }
 
 export {
