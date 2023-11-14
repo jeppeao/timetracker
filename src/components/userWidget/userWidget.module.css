@@ -1,0 +1,8 @@
+.optionsmenu {
+  position: absolute;
+  right: 10px;
+  background-color: var(--color-fg-main);
+  padding: 10px;
+  border-radius: 5px;
+  
+}

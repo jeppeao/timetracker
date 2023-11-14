@@ -11,7 +11,12 @@ enum Page {
   Register = "REGISTER"
 }
 
-const Layout = () => {
+interface LayoutProps {
+  user: string | null;
+  setUser: (username: string | null) => void;
+}
+
+const Layout = (props: LayoutProps) => {
   const [currentPage, setCurrentPage] = useState<Page>(Page.Landing);
 
   const goToLogin = () => {
@@ -19,7 +24,11 @@ const Layout = () => {
   }
 
   const goToRegister = () => {
-    setCurrentPage(Page.Register)
+    setCurrentPage(Page.Register);
+  }
+
+  const goToLanding = () => {
+    setCurrentPage(Page.Landing);
   }
 
   const showPage = (page: Page) => {
@@ -30,7 +39,10 @@ const Layout = () => {
           goToRegister={goToRegister}
         />
       case "LOGIN":
-        return <LoginView/>
+        return <LoginView
+          goToRegister={goToRegister}
+          setUser={props.setUser}
+        />
       case "REGISTER":
         return <RegisterView/>
     }
@@ -38,7 +50,13 @@ const Layout = () => {
 
   return (
     <div className={styles.container}>
-      <Topbar/>
+      <Topbar 
+        goToLanding={goToLanding}
+        goToLogin={goToLogin}
+        goToRegister={goToRegister}
+        user={props.user}
+        setUser={props.setUser}
+      />
       { showPage(currentPage) }
     </div>
   )

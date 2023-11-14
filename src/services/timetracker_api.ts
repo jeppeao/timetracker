@@ -7,8 +7,7 @@ const fetcher = async (url: string, options = {}) => {
 
   const fetchOptions = {...defaultOptions, ...options};
   const response = await fetch (url, fetchOptions);
-  const text = await (response.text())
-  return text;
+  return response;
 }
 
 const getUser = () => {
@@ -23,7 +22,7 @@ const getUser = () => {
 const login = (userName: string, password: string) => {
   const options = {
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({userName: 'newguy', password: 'hello'})
+    body: JSON.stringify({userName: userName, password: password})
   }
 
   return fetcher(
@@ -35,9 +34,6 @@ const login = (userName: string, password: string) => {
 const logout = () => {
   return fetcher('https://localhost:8443/logout')
 }
-// const getUser = () => {
-//   return fetcher('https://130.61.61.87/db');
-// }
 
 const register = async (userName: string, password: string) => {
   const options = {
@@ -55,5 +51,5 @@ export {
   getUser,
   login,
   logout,
-  register
+  register,
 }
