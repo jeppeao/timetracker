@@ -3,7 +3,7 @@ import { login } from "../../services/timetracker_api"
 import { useState } from "react"
 
 interface LoginViewProps {
-  goToRegister: () => void;
+  goToHome: () => void;
   setUser: (username: string | null) => void;
 }
 
@@ -28,6 +28,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       .then(res => {
         if (res.status === 200) {
           props.setUser(formData.username);
+          props.goToHome();
         }
       })
   }
@@ -56,10 +57,6 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
           className={styles.button}
         >Login</button>
       </form>
-      <button 
-        onClick={props.goToRegister}
-        className={styles.button}
-      >Register</button>
     </div>
   )
 }

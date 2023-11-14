@@ -5,6 +5,7 @@ import { useState } from "react";
 interface UserWidgetProps {
   user: string | null;
   setUser: (user:string | null) => void;
+  goToLanding: () => void;
 }
 
 const UserWidget = (props: UserWidgetProps) => {
@@ -18,6 +19,7 @@ const UserWidget = (props: UserWidgetProps) => {
   const handleLogout = () => {
     logout();
     props.setUser(null);
+    props.goToLanding();
   }
 
   const userOptions = () => {

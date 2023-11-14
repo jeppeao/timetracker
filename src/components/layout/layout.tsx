@@ -2,13 +2,15 @@ import Topbar from "../topbar/topbar";
 import LandingView from "../landingView/landingView";
 import LoginView from "../loginView/loginView";
 import RegisterView from "../registerView/registerView";
+import UserHomeView from "../userHomeView/userHomeView";
 import { useState } from "react";
 import styles from './layout.module.css'
 
 enum Page {
   Landing = "LANDING",
   Login = "LOGIN",
-  Register = "REGISTER"
+  Register = "REGISTER",
+  Home = "HOME"
 }
 
 interface LayoutProps {
@@ -31,6 +33,10 @@ const Layout = (props: LayoutProps) => {
     setCurrentPage(Page.Landing);
   }
 
+  const goToHome = () => {
+    setCurrentPage(Page.Home);
+  }
+
   const showPage = (page: Page) => {
     switch (page) {
       case "LANDING":
@@ -40,11 +46,16 @@ const Layout = (props: LayoutProps) => {
         />
       case "LOGIN":
         return <LoginView
-          goToRegister={goToRegister}
+          goToHome={goToHome}
           setUser={props.setUser}
         />
       case "REGISTER":
-        return <RegisterView/>
+        return <RegisterView
+          goToHome={goToHome}
+          setUser={props.setUser}
+        />
+      case "HOME":
+        return <UserHomeView username={props.user || "null"}/>
     }
   }
 

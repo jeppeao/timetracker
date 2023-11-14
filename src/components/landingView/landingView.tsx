@@ -11,9 +11,7 @@ interface LandingViewProps {
 const LandingView = (props: LandingViewProps) => {
   return (
     <div className={styles.container}>
-      LandingView works
-      <button onClick={props.goToLogin}>Login</button>
-      <button onClick={props.goToRegister}>Register</button>
+      Welcome! Please log in or register
     </div>
   )
 }

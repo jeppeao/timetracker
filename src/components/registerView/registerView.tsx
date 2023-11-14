@@ -3,7 +3,8 @@ import { register } from "../../services/timetracker_api"
 import { useState } from "react"
 
 interface RegisterViewProps {
-  // login: (email:string, password: string) => void;
+  goToHome: () => void;
+  setUser: (username: string | null) => void;
 }
 
 const RegisterView = (props: RegisterViewProps) => {
@@ -24,7 +25,10 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
   if (formData.username.length > 0 && formData.password.length > 0) {
     register(formData.username, formData.password)
-      .then(res => console.log(res))
+      .then(res => {
+        props.setUser(formData.username);
+        props.goToHome();
+      })
   }
 }
 

@@ -19,6 +19,7 @@ const Topbar = (props: TopbarProps) => {
         {
           props.user ? 
             <UserWidget 
+              goToLanding={props.goToLanding}
               user={props.user}
               setUser={props.setUser}
             /> :
