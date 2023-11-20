@@ -16,6 +16,7 @@ enum Page {
 interface LayoutProps {
   user: string | null;
   setUser: (username: string | null) => void;
+  login: (user: string, password: string) => Promise<boolean>;
 }
 
 const Layout = (props: LayoutProps) => {
@@ -43,11 +44,13 @@ const Layout = (props: LayoutProps) => {
         return <LandingView 
           goToLogin={goToLogin}
           goToRegister={goToRegister}
+          goToHome={goToHome}
+          login={props.login}
         />
       case "LOGIN":
         return <LoginView
           goToHome={goToHome}
-          setUser={props.setUser}
+          login={props.login}
         />
       case "REGISTER":
         return <RegisterView

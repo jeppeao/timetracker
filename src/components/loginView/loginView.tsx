@@ -1,10 +1,11 @@
 import styles from "./loginView.module.css"
-import { login } from "../../services/timetracker_api"
 import { useState } from "react"
+import { saveLoginInfo } from "../../utils/util"
 
 interface LoginViewProps {
   goToHome: () => void;
   setUser: (username: string | null) => void;
+  login: (user: string, password: string) => Promise<boolean>;
 }
 
 const LoginView = (props:LoginViewProps) => {
@@ -14,25 +15,34 @@ const LoginView = (props:LoginViewProps) => {
     password: ""
   })
 
-const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  setFormData((prev) => ({
-    ...prev,
-    [event.target.name]: event.target.value
-  }))
-}
+  const [remember, setRemember] = useState(false);
 
-const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-  if (formData.username.length > 0 && formData.password.length > 0) {
-    login(formData.username, formData.password)
-      .then(res => {
-        if (res.status === 200) {
-          props.setUser(formData.username);
-          props.goToHome();
-        }
-      })
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value
+    })) 
   }
-}
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (formData.username.length > 0 && formData.password.length > 0) {
+      props.login(formData.username, formData.password)
+        .then(res => {
+          if (res) {
+            if (remember) {
+              saveLoginInfo(formData.username, formData.password);
+            }
+            props.goToHome();
+          }
+        })
+    }
+  }
+
+  const handleToggle = () => {
+    setRemember(remember => !remember);
+  }
+
 
   return (
     <div className={styles.container}>
@@ -52,13 +62,30 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
           type="text"
           onChange={handleChange}
         />
-        <button 
-          type="submit"
-          className={styles.button}
-        >Login</button>
+        <div className={styles.submitArea}>
+          <button 
+            type="submit"
+            className={styles.button}
+          >Login</button>
+          <div className={styles.rememberForm}> 
+            <input 
+              type="checkbox"
+              id="remember"
+              name="remember"
+              checked={remember}
+              onChange={handleToggle}
+            ></input>
+            <label 
+              className={styles.rememberLabel}
+              htmlFor="remember"
+            >Remember me</label>
+          </div>
+        </div>
       </form>
     </div>
   )
 }
 
 export default LoginView;
+
+

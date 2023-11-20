@@ -1,5 +1,6 @@
 import styles from "./userWidget.module.css";
 import { logout } from '../../services/timetracker_api';
+import { clearLoginInfo } from "../../utils/util";
 import { useState } from "react";
 
 interface UserWidgetProps {
@@ -18,6 +19,7 @@ const UserWidget = (props: UserWidgetProps) => {
 
   const handleLogout = () => {
     logout();
+    clearLoginInfo();
     props.setUser(null);
     props.goToLanding();
   }

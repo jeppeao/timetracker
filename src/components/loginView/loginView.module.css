@@ -21,3 +21,25 @@ input {
   width: 200px;
   margin-bottom: 12px;
 }
+
+.rememberForm {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.submitArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type='checkbox'] {
+  width: auto;
+  margin-bottom:unset;
+  cursor: pointer;
+}
+
+.rememberLabel {
+  font-size: smaller;
+}
