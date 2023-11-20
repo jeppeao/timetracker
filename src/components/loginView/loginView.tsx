@@ -4,7 +4,6 @@ import { saveLoginInfo } from "../../utils/util"
 
 interface LoginViewProps {
   goToHome: () => void;
-  setUser: (username: string | null) => void;
   login: (user: string, password: string) => Promise<boolean>;
 }
 
