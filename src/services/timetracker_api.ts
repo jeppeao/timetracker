@@ -1,3 +1,5 @@
+const BASE_URL = "https://localhost:8443";
+
 const fetcher = async (url: string, options = {}) => {
   const defaultOptions: RequestInit = {
     method: 'POST',
@@ -10,46 +12,60 @@ const fetcher = async (url: string, options = {}) => {
   return response;
 }
 
-const getUser = () => {
+const login = (username: string, password: string) => {
   const options = {
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({userName: 'newguy', password: 'hello'})
-  }
-
-  return fetcher('https://localhost:8443/', options);
-}
-
-const login = (userName: string, password: string) => {
-  const options = {
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({userName: userName, password: password})
+    body: JSON.stringify({username: username, password: password})
   }
 
   return fetcher(
-    'https://localhost:8443/login',
+    BASE_URL + '/login',
     options,
   )
 }
 
 const logout = () => {
-  return fetcher('https://localhost:8443/logout')
+  return fetcher(BASE_URL + '/logout')
 }
 
-const register = async (userName: string, password: string) => {
+const register = async (username: string, password: string) => {
   const options = {
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({userName, password})
+    body: JSON.stringify({username, password})
   }
 
   return fetcher(
-    'https://localhost:8443/register',
+    BASE_URL + '/register',
+    options,
+  )
+}
+
+const createBlock = async (username: string, startTime: Date, endTime: Date) => {
+  const options = {
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({username, startTime, endTime})
+  }
+  return fetcher(
+    BASE_URL + '/db/createblock',
+    options,
+  )
+}
+
+const getBlocks = async (username: string, from: Date, to: Date) => {
+  const options = {
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({username, from, to})
+  }
+  return fetcher(
+    BASE_URL + '/db/getBlocks',
     options,
   )
 }
 
 export {
-  getUser,
   login,
   logout,
   register,
+  createBlock,
+  getBlocks
 }
