@@ -30,29 +30,32 @@ const UserHomeView = (props: UserHomeViewProps) => {
   }
 
   const timerButton = () => {
-    if (! startTime || stopTime) {
-      return (
-      <button className={styles.button} onClick={start}>Start</button>
-      )
-    } else {
-      return (
-        <button className={styles.button} onClick={stop}>Stop</button>
-      )
-    }
+    const handleClick = (!startTime || stopTime) ? start : stop;
+    const text = (!startTime || stopTime) ? "START" : "RUNNING...";
+    const style = (!startTime || stopTime) ? styles.startbtn : styles.stopbtn;
+    
+    return (
+      <button className={`${style} ${styles.button}`} onClick={handleClick}>{text}</button>
+    )
+  
   }
 
   return (
     <div className={styles.container}>
-      Home of {props.username}
-      <div>
-        {"Elapsed seconds: " + (elapsedTime || "0")}
+      <div className={styles.timercontainer}>
+        { timerButton() }   
+       <div className={styles.tagbox}>
+         <div>new tag</div>
+         <div>tags selected...</div>
+         <div>add tags</div>
+  
+        </div>
       </div>
-      
-      { timerButton() }
-      {stopTime ? <button className={styles.button} onClick={resume}>Extend</button> : false}
-      <DayView/>
-      <button onClick={makeBlock}>createBlock</button>
-      <button onClick={fetchBlocks}>createBlock</button>
+      <div className={styles.calenderview}>
+        <DayView day={new Date(Date.now())}/>
+        {/* <button onClick={makeBlock}>createBlock</button>
+        <button onClick={fetchBlocks}>getBlocks</button> */}
+      </div>
     </div>
   )
 }

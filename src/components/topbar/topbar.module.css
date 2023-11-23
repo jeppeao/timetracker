@@ -5,6 +5,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--color-fg-main);
+  color: var(--color-bg-main);
 }
 
 .titlebox {
