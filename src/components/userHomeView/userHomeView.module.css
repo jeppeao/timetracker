@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 40px;
+  gap: 40px;
 }
 
 .button {
@@ -17,7 +19,7 @@
 }
 
 .startbtn {
-  background-color: seagreen;
+  background-color: dodgerblue;
 }
 
 .stopbtn {
@@ -28,27 +30,40 @@
   animation-timing-function: ease-in-out;
 }
 
-.timercontainer {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tagbox{
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 10px;
-
-}
-
 .calenderview {
   display:flex;
   justify-content: center;
   width: 100%;
+}
+
+.timerbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-radius: 5px;
+  border: 1px solid var(--color-fg-main);
+  padding-left: 10px;
+}
+
+
+.timerbar > input {
+  width: 100px;
+  margin: 0;
+  border-radius: 5px;
+  height: 40px;
+  border: none;
+  padding: 0;
+}
+
+.tagdisplay {
+  width: 300px;
+  height: 40px;
+  background-color: var(--color-fg-main);
+  border-radius: 5px;
+
+}
+.bold {
+  font-weight: bold;
 }
 
 @keyframes running {

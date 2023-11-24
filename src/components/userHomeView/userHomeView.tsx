@@ -42,15 +42,44 @@ const UserHomeView = (props: UserHomeViewProps) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.timercontainer}>
-        { timerButton() }   
-       <div className={styles.tagbox}>
-         <div>new tag</div>
-         <div>tags selected...</div>
-         <div>add tags</div>
-  
-        </div>
+      <div className={styles.timerbar}>
+        <div className={styles.tagdisplay}></div>
+        <input type="text" placeholder="Add new tag"></input>
+        <button>tags</button>
+        <span>00:00 - 00:00</span>
+        <span className={styles.bold}>00:00h</span>
+        { timerButton() } 
       </div>
+
+
+      {/* <div className={styles.timercontainer}>
+          
+       <div className={styles.tagbox}>
+       </div>
+       <div className={styles.controlbox}>
+         { timerButton() }          
+         <div>
+           <input></input>
+           <button>+</button>  
+         </div>
+         <select>
+           <option selected disabled hidden>Add</option>
+         </select>
+         <select>
+           <option selected disabled hidden>Remove</option>
+         </select>
+        </div>
+         <div className={styles.infobox}>
+           <div>00:00h</div>
+           <div>xx:yy-xx:yy</div>
+           <div className={styles.taginfo}>
+             <div>tag1</div>
+             <div>tag2</div>
+             <div>tag3</div>
+           </div>
+         </div>
+         
+      </div> */}
       <div className={styles.calenderview}>
         <DayView day={new Date(Date.now())}/>
         {/* <button onClick={makeBlock}>createBlock</button>
