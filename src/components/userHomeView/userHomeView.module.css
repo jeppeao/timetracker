@@ -7,10 +7,9 @@
 }
 
 .button {
-  width: 100px;
-  height: 50px;
+  width: 60px;
+  height: 40px;
   border-radius: 5px;
-  border:none;
   color: var(--color-fg-main);
 }
 
@@ -30,38 +29,68 @@
   animation-timing-function: ease-in-out;
 }
 
+.tagbtn {
+  width: 60px;
+  height: 35px;
+  background-color: dodgerblue;
+  border-radius: 5px;
+}
+
 .calenderview {
   display:flex;
   justify-content: center;
   width: 100%;
 }
 
-.timerbar {
+.blockbox {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
   border-radius: 5px;
-  border: 1px solid var(--color-fg-main);
-  padding-left: 10px;
+  gap: 4px;
+  padding: 10px;
+
 }
 
-
-.timerbar > input {
-  width: 100px;
+.blockbox > div > input {
+  width: 150px;
   margin: 0;
   border-radius: 5px;
-  height: 40px;
+  height: 50px;
   border: none;
   padding: 0;
+  flex-grow: 1;
+}
+
+.tagbar {
+  width: 350px;
+  height: 70px;
+  background-color: var(--color-fg-main);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .tagdisplay {
+  height: 100%;
   width: 300px;
-  height: 40px;
-  background-color: var(--color-fg-main);
-  border-radius: 5px;
-
 }
+
+.tagcontrol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timebar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
 .bold {
   font-weight: bold;
 }

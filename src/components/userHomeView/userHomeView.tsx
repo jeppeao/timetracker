@@ -4,6 +4,7 @@ import { TimeBlock } from "../../utils/util";
 import { useTimer } from "../../utils/hooks";
 import DayView from "../dayView/dayView";
 import { createBlock, getBlocks } from "../../services/timetracker_api";
+import { timeFromEpoch, durationFromSeconds } from "../../utils/util";
 
 interface UserHomeViewProps {
   username: string;
@@ -15,6 +16,11 @@ const UserHomeView = (props: UserHomeViewProps) => {
     start, stop, resume, reset, startTime, stopTime, elapsedTime, setStartTime
   } = useTimer();
 
+  const startStr = startTime ? timeFromEpoch(startTime) : "00:00";
+  const stopStr = stopTime ? timeFromEpoch(stopTime) : "00:00";
+  const elapsedStr = elapsedTime ? durationFromSeconds(elapsedTime) : "00:00";
+
+  console.log(startStr)
   const makeBlock = () => {
      const startTime = new Date(Date.now());
      const endTime = new Date(Date.now() + 100000000);
@@ -31,7 +37,7 @@ const UserHomeView = (props: UserHomeViewProps) => {
 
   const timerButton = () => {
     const handleClick = (!startTime || stopTime) ? start : stop;
-    const text = (!startTime || stopTime) ? "START" : "RUNNING...";
+    const text = (!startTime || stopTime) ? "START" : "END";
     const style = (!startTime || stopTime) ? styles.startbtn : styles.stopbtn;
     
     return (
@@ -42,44 +48,25 @@ const UserHomeView = (props: UserHomeViewProps) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.timerbar}>
-        <div className={styles.tagdisplay}></div>
-        <input type="text" placeholder="Add new tag"></input>
-        <button>tags</button>
-        <span>00:00 - 00:00</span>
-        <span className={styles.bold}>00:00h</span>
-        { timerButton() } 
+      <div className={styles.blockbox}>
+        <div className={styles.timebar}>
+          <span>{startStr + " - " + stopStr}</span>
+          <span className={styles.bold}>{elapsedStr + "h"}</span>
+          <button className={styles.tagbtn}>...</button>
+          { timerButton() } 
+
+        </div>
+        <div className={styles.tagbar}>
+          <div className={styles.tagdisplay}>
+          </div>
+          <div className ={styles.tagcontrol}>
+            <button className={styles.tagbtn}>+</button>
+            <button className={styles.tagbtn}>-</button>
+          </div>
+        </div>
+
       </div>
 
-
-      {/* <div className={styles.timercontainer}>
-          
-       <div className={styles.tagbox}>
-       </div>
-       <div className={styles.controlbox}>
-         { timerButton() }          
-         <div>
-           <input></input>
-           <button>+</button>  
-         </div>
-         <select>
-           <option selected disabled hidden>Add</option>
-         </select>
-         <select>
-           <option selected disabled hidden>Remove</option>
-         </select>
-        </div>
-         <div className={styles.infobox}>
-           <div>00:00h</div>
-           <div>xx:yy-xx:yy</div>
-           <div className={styles.taginfo}>
-             <div>tag1</div>
-             <div>tag2</div>
-             <div>tag3</div>
-           </div>
-         </div>
-         
-      </div> */}
       <div className={styles.calenderview}>
         <DayView day={new Date(Date.now())}/>
         {/* <button onClick={makeBlock}>createBlock</button>
