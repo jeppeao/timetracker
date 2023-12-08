@@ -13,7 +13,7 @@ const Topbar = (props: TopbarProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.titlebox} onClick={props.goToLanding}>
-        <h2>timetracker</h2>
+        <h3>timetracker</h3>
       </div>
       <div className={styles.userbox}>
         {
@@ -23,9 +23,15 @@ const Topbar = (props: TopbarProps) => {
               user={props.user}
               setUser={props.setUser}
             /> :
-          <div>
-            <button onClick={props.goToLogin}>Log in</button>
-            <button onClick={props.goToRegister}>Register</button>
+          <div className={styles.loginBtn}>
+            <button 
+              className={styles.button} 
+              onClick={props.goToLogin}
+            >Log in</button>
+            <button 
+              className={styles.button}
+              onClick={props.goToRegister}
+            >Register</button>
           </div>
           
         }

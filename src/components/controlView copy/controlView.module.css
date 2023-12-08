@@ -1,0 +1,71 @@
+.container {
+  background-color: var(--color-bg-second);
+  width: 100%;
+  max-width: 380px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0px 10px 0px;
+}
+
+.timebar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: x-large;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.tagbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.tag {
+  border: 1px solid black;
+  color: var(--color-fg-main);
+  font-size: large;
+  border-radius: 5px;
+  padding: 2px 6px 2px 6px;
+}
+
+.controlbar {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+
+.startbtn {
+  border-radius: 20px;
+  width: 120px;
+  height: 60px;
+  font-size: x-large;
+  background-color: steelblue;
+  position: absolute;
+  transform: translate(0, 25px);
+}
+
+.editbtn {
+  height: 32px;
+  width: 32px;
+}
+
+.elapsed {
+  margin-left: 10px
+}
+
+.startstop {
+  font-size: x-large;
+}

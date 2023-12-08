@@ -3,7 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  --color-bg-main: #242424;
+  --color-bg-main: #242424;  
+  --color-bg-second: #292830;
   --color-fg-main: rgba(255, 255, 255, 0.87);
 
 
@@ -16,6 +17,18 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0;
+}
 
+button {
+  background-color: black;
+  color: var(--color-fg-main);
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  color: skyblue;
 }
 

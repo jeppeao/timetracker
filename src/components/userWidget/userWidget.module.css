@@ -1,8 +1,19 @@
 .optionsmenu {
   position: absolute;
   right: 10px;
-  background-color: var(--color-fg-main);
+  background-color: black;
   padding: 10px;
   border-radius: 5px;
-  
+  animation-name: slidein;
+  animation-duration: 0.4s;
+}
+
+button {
+  background-color: var(--color-bg-main);
+
+}
+
+@keyframes slidein {
+  0% {transform: translate(0px, -5px)} 
+  100% {transform: translate(0px, 0px)}
 }

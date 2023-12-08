@@ -5,6 +5,8 @@ import { useTimer } from "../../utils/hooks";
 import DayView from "../dayView/dayView";
 import { createBlock, getBlocks } from "../../services/timetracker_api";
 import { timeFromEpoch, durationFromSeconds } from "../../utils/util";
+import BlockView from "../blockView/blockView";
+import ControlView from "../controlView copy/controlView";
 
 interface UserHomeViewProps {
   username: string;
@@ -20,7 +22,6 @@ const UserHomeView = (props: UserHomeViewProps) => {
   const stopStr = stopTime ? timeFromEpoch(stopTime) : "00:00";
   const elapsedStr = elapsedTime ? durationFromSeconds(elapsedTime) : "00:00";
 
-  console.log(startStr)
   const makeBlock = () => {
      const startTime = new Date(Date.now());
      const endTime = new Date(Date.now() + 100000000);
@@ -48,7 +49,8 @@ const UserHomeView = (props: UserHomeViewProps) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.blockbox}>
+      <ControlView/>
+      {/* <div className={styles.blockbox}>
         <div className={styles.timebar}>
           <span>{startStr + " - " + stopStr}</span>
           <span className={styles.bold}>{elapsedStr + "h"}</span>
@@ -65,7 +67,9 @@ const UserHomeView = (props: UserHomeViewProps) => {
           </div>
         </div>
 
-      </div>
+      </div> */}
+      
+
 
       <div className={styles.calenderview}>
         <DayView day={new Date(Date.now())}/>
